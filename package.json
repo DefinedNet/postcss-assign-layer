@@ -14,7 +14,11 @@
   },
   "author": "Ian VanSchooten <ian.vanschooten@gmail.com>",
   "license": "MIT",
-  "repository": "@ianvs/postcss-plugin-assign-layers",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DefinedNet/postcss-assign-layer.git"
+  },
+  "homepage": "https://github.com/DefinedNet/postcss-assign-layer#readme",
   "files": [
     "index.js"
   ],
