@@ -17,5 +17,10 @@ module.exports = {
         sourceType: "module",
       },
     },
+    // Prevent .only in tests
+    {
+      files: ["src/**/*.test.{ts,tsx}"],
+      rules: { "no-only-tests/no-only-tests": "error" },
+    },
   ],
 };

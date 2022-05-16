@@ -1,6 +1,6 @@
 {
   "name": "postcss-assign-layer",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "PostCSS plugin to assign a cascade layer to files.",
   "keywords": [
     "postcss",
@@ -9,7 +9,8 @@
     "postcss-assign-layer"
   ],
   "scripts": {
-    "test": "vitest --coverage && eslint ."
+    "test": "vitest run --coverage && eslint .",
+    "test:watch": "vitest"
   },
   "author": "Ian VanSchooten <ian.vanschooten@gmail.com>",
   "license": "MIT",
@@ -26,10 +27,12 @@
     "eslint": "^8.0.1",
     "eslint-plugin-jest": "^25.2.2",
     "postcss": "^8.3.11",
+    "prettier": "^2.6.2",
     "vite": "^2.9.9",
     "vitest": "^0.12.6"
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.2.1"
-  }
+  },
+  "packageManager": "npm@8.10.0"
 }
