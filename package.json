@@ -15,6 +15,9 @@
   "author": "Ian VanSchooten <ian.vanschooten@gmail.com>",
   "license": "MIT",
   "repository": "@ianvs/postcss-plugin-assign-layers",
+  "files": [
+    "index.js"
+  ],
   "engines": {
     "node": ">=12.0.0"
   },
