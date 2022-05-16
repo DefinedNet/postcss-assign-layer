@@ -9,7 +9,7 @@
     "postcss-assign-layer"
   ],
   "scripts": {
-    "test": "jest --coverage && eslint ."
+    "test": "vitest --coverage && eslint ."
   },
   "author": "Ian VanSchooten <ian.vanschooten@gmail.com>",
   "license": "MIT",
@@ -21,18 +21,13 @@
     "postcss": "^8.3.0"
   },
   "devDependencies": {
+    "c8": "^7.11.3",
     "clean-publish": "^3.4.2",
     "eslint": "^8.0.1",
     "eslint-plugin-jest": "^25.2.2",
-    "jest": "^27.3.1",
-    "postcss": "^8.3.11"
-  },
-  "jest": {
-    "coverageThreshold": {
-      "global": {
-        "statements": 100
-      }
-    }
+    "postcss": "^8.3.11",
+    "vite": "^2.9.9",
+    "vitest": "^0.12.6"
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.2.1"
