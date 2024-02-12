@@ -53,7 +53,7 @@ describe("postcss-assign-layer", () => {
           color: WhiteSmoke;
         }
       }`,
-      { layerName: "custom" },
+      [{ layerName: "custom" }],
       {
         from: filePath,
       }
@@ -85,9 +85,11 @@ describe("postcss-assign-layer", () => {
           color: FireBrick;
         }
       }`,
-      {
-        include: "**/base.css",
-      },
+      [
+        {
+          include: "**/base.css",
+        },
+      ],
       {
         from: filePath,
       }
@@ -106,11 +108,82 @@ describe("postcss-assign-layer", () => {
       i {
         color: WhiteSmoke;
       }`,
-      {
-        include: "**/base.css",
-      },
+      [
+        {
+          include: "**/base.css",
+        },
+      ],
       {
         from: filePath,
+      }
+    );
+  });
+
+  it("allows specifying layer name and pattern", async () => {
+    const filePath = path.resolve("test/fixtures/base.css");
+    const file = readFileSync(filePath, "utf-8");
+    await run(
+      file,
+      `@layer styles {
+        a {
+          color: FireBrick;
+        }
+      }`,
+      [
+        {
+          include: "**/base.css",
+          layerName: "styles",
+        },
+      ],
+      {
+        from: filePath,
+      }
+    );
+  });
+
+  it("allows multiple patterns and layers", async () => {
+    const basePath = path.resolve("test/fixtures/base.css");
+    const componentPath = path.resolve("test/fixtures/component.module.css");
+    const baseFile = readFileSync(basePath, "utf-8");
+    const componentFile = readFileSync(componentPath, "utf-8");
+    const config = [
+      {
+        include: "**/base.css",
+        layerName: "styles",
+      },
+      {
+        // include: "**/*.module.css", <- the default is still used for unspecified properties
+        layerName: "components",
+      },
+    ];
+
+    await run(
+      baseFile,
+      `@layer styles {
+        a {
+          color: FireBrick;
+        }
+      }`,
+      config,
+      {
+        from: basePath,
+      }
+    );
+
+    await run(
+      componentFile,
+      `@layer components {
+        a {
+          color: BurlyWood;
+        }
+
+        i {
+          color: WhiteSmoke;
+        }
+      }`,
+      config,
+      {
+        from: componentPath,
       }
     );
   });

@@ -73,17 +73,32 @@ If you do not use PostCSS, add it according to [official docs] and set this plug
 module.exports = {
   plugins: [
     require('autoprefixer'),
-+   require('postcss-assign-layer')({
-+     include: '**/*.module.css',
-+     layerName: 'components',
-+   }),
++   require('postcss-assign-layer')(/* Optional configuration */),
   ],
 }
 ```
 
 ### **Step 4:** Configure the plugin
 
-It's possible to configure the include glob, as well as the layer name.
+It's possible to configure the include glob and the layer name, and more than one set of rules can be provided.
+
+```diff
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
++   require('postcss-assign-layer')([
++     {
++       include: '**/*.module.css',
++       layerName: 'components',
++     },
++     {
++       include: 'global/*.css',
++       layerName: 'base',
++     },
++   ]),
+  ],
+}
+```
 
 #### `include`
 
