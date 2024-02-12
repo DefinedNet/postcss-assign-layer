@@ -141,7 +141,7 @@ describe("postcss-assign-layer", () => {
     );
   });
 
-  it.only("allows multiple patterns and layers", async () => {
+  it("allows multiple patterns and layers", async () => {
     const basePath = path.resolve("test/fixtures/base.css");
     const componentPath = path.resolve("test/fixtures/component.module.css");
     const baseFile = readFileSync(basePath, "utf-8");
