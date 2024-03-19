@@ -14,7 +14,7 @@ export default tseslint.config(
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    ignores: ["coverage/*", "index.js", "index.test.mjs", "index.d.ts"],
+    ignores: ["coverage/*", "dist"],
   },
   {
     languageOptions: {
