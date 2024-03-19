@@ -41,5 +41,5 @@
   "dependencies": {
     "@rollup/pluginutils": "^4.2.1"
   },
-  "packageManager": "npm@8.10.0"
+  "packageManager": "pnpm@8.15.5"
 }
