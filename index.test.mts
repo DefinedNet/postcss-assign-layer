@@ -3,15 +3,19 @@ import path from "node:path";
 import postcss from "postcss";
 import prettier from "prettier";
 import { describe, it, expect } from "vitest";
-
-const plugin = (await import(".")).default;
+import { plugin, type ConfigItem } from "./index.js";
 
 // We don't care about formatting differences, so normalize with prettier
-function format(css) {
+function format(css: string) {
   return prettier.format(css, { parser: "css" });
 }
 
-async function run(input, output, opts, postcssOpts = {}) {
+async function run(
+  input: string,
+  output: string,
+  opts?: ConfigItem[],
+  postcssOpts = {}
+) {
   const result = await postcss([plugin(opts)]).process(input, postcssOpts);
   expect(format(result.css)).toEqual(format(output));
   expect(result.warnings()).toHaveLength(0);

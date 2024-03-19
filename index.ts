@@ -1,12 +1,16 @@
-const { createFilter } = require("@rollup/pluginutils");
+import { createFilter } from "@rollup/pluginutils";
+import type { PluginCreator } from "postcss";
 
 const DEFAULT_INCLUDE = "**/*.module.css";
 const DEFAULT_LAYERNAME = "components";
 
-/**
- * @type {import('postcss').PluginCreator}
- */
-module.exports = (
+export type ConfigItem = {
+  include?: string;
+  layerName?: string;
+};
+type PluginOptions = ConfigItem[];
+
+export const plugin: PluginCreator<PluginOptions> = (
   configItems = [
     {
       include: DEFAULT_INCLUDE,
@@ -14,7 +18,7 @@ module.exports = (
     },
   ]
 ) => {
-  const filters = [];
+  const filters: { filter: (id: string) => boolean; layerName: string }[] = [];
 
   for (const config of configItems) {
     const filter = createFilter(config.include ?? DEFAULT_INCLUDE);
@@ -23,12 +27,12 @@ module.exports = (
 
   return {
     postcssPlugin: "postcss-assign-layers",
-    async Once(root, { AtRule }) {
-      const inputFile = root.source.input.file;
+    Once(root, { AtRule }) {
+      const inputFile = root.source?.input.file;
       const layerNames = [];
 
       for (const { filter, layerName } of filters) {
-        if (filter(inputFile)) {
+        if (inputFile && filter(inputFile)) {
           layerNames.push(layerName);
         }
       }
@@ -45,5 +49,6 @@ module.exports = (
     },
   };
 };
+plugin.postcss = true;
 
-module.exports.postcss = true;
+export default plugin;
