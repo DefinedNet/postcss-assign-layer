@@ -5,5 +5,4 @@ yarn-error.log
 coverage/
 
 # build products
-index.js
-index.d.ts
+dist/*
