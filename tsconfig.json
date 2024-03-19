@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2019"],
+    "module": "node16",
+    "target": "ES2019",
+    "moduleResolution": "node16",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "declaration": true,
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["index.ts", "types/*.d.ts"]
+}
