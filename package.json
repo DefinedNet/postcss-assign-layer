@@ -29,10 +29,11 @@
     "postcss": "^8.3.0"
   },
   "devDependencies": {
+    "@eslint/js": "^8.57.0",
     "c8": "^7.11.3",
     "clean-publish": "^3.4.2",
-    "eslint": "^8.0.1",
-    "eslint-plugin-no-only-tests": "^2.6.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-no-only-tests": "^3.1.0",
     "postcss": "^8.3.11",
     "prettier": "^2.6.2",
     "vite": "^2.9.9",

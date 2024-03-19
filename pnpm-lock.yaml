@@ -10,6 +10,9 @@ dependencies:
     version: 4.2.1
 
 devDependencies:
+  '@eslint/js':
+    specifier: ^8.57.0
+    version: 8.57.0
   c8:
     specifier: ^7.11.3
     version: 7.14.0
@@ -17,11 +20,11 @@ devDependencies:
     specifier: ^3.4.2
     version: 3.4.5
   eslint:
-    specifier: ^8.0.1
+    specifier: ^8.57.0
     version: 8.57.0
   eslint-plugin-no-only-tests:
-    specifier: ^2.6.0
-    version: 2.6.0
+    specifier: ^3.1.0
+    version: 3.1.0
   postcss:
     specifier: ^8.3.11
     version: 8.4.36
@@ -593,9 +596,9 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-plugin-no-only-tests@2.6.0:
-    resolution: {integrity: sha512-T9SmE/g6UV1uZo1oHAqOvL86XWl7Pl2EpRpnLI8g/bkJu+h7XBCB+1LnubRZ2CUQXj805vh4/CYZdnqtVaEo2Q==}
-    engines: {node: '>=4.0.0'}
+  /eslint-plugin-no-only-tests@3.1.0:
+    resolution: {integrity: sha512-Lf4YW/bL6Un1R6A76pRZyE1dl1vr31G/ev8UzIc/geCgFWyrKil8hVjYqWVKGB/UIGmb6Slzs9T0wNezdSVegw==}
+    engines: {node: '>=5.0.0'}
     dev: true
 
   /eslint-scope@7.2.2:
