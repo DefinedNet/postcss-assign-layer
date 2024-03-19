@@ -4,11 +4,11 @@ import type { PluginCreator } from "postcss";
 const DEFAULT_INCLUDE = "**/*.module.css";
 const DEFAULT_LAYERNAME = "components";
 
-export type ConfigItem = {
+type ConfigItem = {
   include?: string;
   layerName?: string;
 };
-type PluginOptions = ConfigItem[];
+export type PluginOptions = ConfigItem[];
 
 export const plugin: PluginCreator<PluginOptions> = (
   configItems = [

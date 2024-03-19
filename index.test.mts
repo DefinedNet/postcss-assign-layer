@@ -3,7 +3,7 @@ import path from "node:path";
 import postcss from "postcss";
 import prettier from "prettier";
 import { describe, it, expect } from "vitest";
-import { plugin, type ConfigItem } from "./index.js";
+import { plugin, type PluginOptions } from "./index.js";
 
 // We don't care about formatting differences, so normalize with prettier
 function format(css: string) {
@@ -13,7 +13,7 @@ function format(css: string) {
 async function run(
   input: string,
   output: string,
-  opts?: ConfigItem[],
+  opts?: PluginOptions,
   postcssOpts = {}
 ) {
   const result = await postcss([plugin(opts)]).process(input, postcssOpts);
