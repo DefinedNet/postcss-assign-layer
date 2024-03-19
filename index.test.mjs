@@ -12,7 +12,7 @@ function format(css) {
 }
 
 async function run(input, output, opts, postcssOpts = {}) {
-  let result = await postcss([plugin(opts)]).process(input, postcssOpts);
+  const result = await postcss([plugin(opts)]).process(input, postcssOpts);
   expect(format(result.css)).toEqual(format(output));
   expect(result.warnings()).toHaveLength(0);
 }

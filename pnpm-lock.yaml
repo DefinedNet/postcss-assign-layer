@@ -10,6 +10,9 @@ dependencies:
     version: 4.2.1
 
 devDependencies:
+  '@eslint/js':
+    specifier: ^8.57.0
+    version: 8.57.0
   c8:
     specifier: ^7.11.3
     version: 7.14.0
