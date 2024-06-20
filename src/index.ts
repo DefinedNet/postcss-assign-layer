@@ -10,7 +10,7 @@ type ConfigItem = {
 };
 export type PluginOptions = ConfigItem[];
 
-export const plugin: PluginCreator<PluginOptions> = (
+const plugin: PluginCreator<PluginOptions> = (
   configItems = [
     {
       include: DEFAULT_INCLUDE,
