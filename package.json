@@ -9,7 +9,7 @@
     "postcss-assign-layer"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts",
+    "build": "tsup src/index.ts --format esm,cjs --dts --cjsInterop --splitting",
     "test": "vitest run --coverage && eslint .",
     "test:watch": "vitest",
     "prepublishOnly": "pnpm build && pnpm test"

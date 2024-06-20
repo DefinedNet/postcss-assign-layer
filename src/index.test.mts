@@ -3,7 +3,8 @@ import path from "node:path";
 import postcss from "postcss";
 import prettier from "prettier";
 import { describe, it, expect } from "vitest";
-import { plugin, type PluginOptions } from "./index";
+import type { PluginOptions } from "./index";
+import plugin from "./index";
 
 // We don't care about formatting differences, so normalize with prettier
 function format(css: string) {
