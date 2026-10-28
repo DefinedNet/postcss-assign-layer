@@ -37,6 +37,17 @@ const plugin: PluginCreator<PluginOptions> = (
         }
       }
 
+      if (layerNames.length === 0) return;
+
+      // `@charset` must be the first thing in a stylesheet, and css-loader only reads
+      // ICSS `:import`/`:export` rules at the root, so these stay outside the layer.
+      const rootOnly = root.nodes.filter(
+        (node) =>
+          (node.type === "atrule" && node.name === "charset") ||
+          (node.type === "rule" && /^:(import|export)\b/.test(node.selector))
+      );
+      for (const node of rootOnly) node.remove();
+
       for (const layerName of layerNames) {
         const layer = new AtRule({
           name: "layer",
@@ -46,6 +57,8 @@ const plugin: PluginCreator<PluginOptions> = (
         root.removeAll();
         root.append(layer);
       }
+
+      root.prepend(rootOnly);
     },
   };
 };

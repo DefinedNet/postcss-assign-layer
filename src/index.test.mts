@@ -146,6 +146,32 @@ describe("postcss-assign-layer", () => {
     );
   });
 
+  it("keeps @charset and ICSS :import/:export rules outside the layer", async () => {
+    await run(
+      `@charset "UTF-8";
+      :import("./tokens.css") { primary: primary; }
+      a { color: FireBrick; }
+      :export { primary: primary; }
+      i { color: WhiteSmoke; }`,
+      `@charset "UTF-8";
+      :import("./tokens.css") { primary: primary; }
+      :export { primary: primary; }
+      @layer components {
+        a { color: FireBrick; }
+        i { color: WhiteSmoke; }
+      }`,
+      undefined,
+      { from: path.resolve("test/fixtures/component.module.css") }
+    );
+  });
+
+  it("does not hoist ICSS-looking rules out of non-matching files", async () => {
+    const input = `a { color: FireBrick; } :export { primary: red; }`;
+    await run(input, input, undefined, {
+      from: path.resolve("test/fixtures/base.css"),
+    });
+  });
+
   it("allows multiple patterns and layers", async () => {
     const basePath = path.resolve("test/fixtures/base.css");
     const componentPath = path.resolve("test/fixtures/component.module.css");
