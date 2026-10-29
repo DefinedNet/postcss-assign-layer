@@ -165,6 +165,30 @@ describe("postcss-assign-layer", () => {
     );
   });
 
+  it("keeps @namespace outside the layer", async () => {
+    await run(
+      `@charset "UTF-8";
+      @namespace svg url(http://www.w3.org/2000/svg);
+      svg|a { color: FireBrick; }`,
+      `@charset "UTF-8";
+      @namespace svg url(http://www.w3.org/2000/svg);
+      @layer components {
+        svg|a { color: FireBrick; }
+      }`,
+      undefined,
+      { from: path.resolve("test/fixtures/component.module.css") }
+    );
+  });
+
+  it("emits a hoisted @charset as the first bytes of the output", async () => {
+    // Asserts on raw output because prettier would strip the leading whitespace.
+    const result = await postcss([plugin()]).process(
+      `/* license */\n@charset "UTF-8";\na { color: FireBrick; }`,
+      { from: path.resolve("test/fixtures/component.module.css") }
+    );
+    expect(result.css.startsWith(`@charset "UTF-8";`)).toBe(true);
+  });
+
   it("does not hoist ICSS-looking rules out of non-matching files", async () => {
     const input = `a { color: FireBrick; } :export { primary: red; }`;
     await run(input, input, undefined, {
