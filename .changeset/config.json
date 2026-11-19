@@ -8,5 +8,5 @@
   "format": "auto",
   "updateInternalDependencies": "patch",
   "commit": false,
-  "changelog": "@changesets/cli/changelog"
+  "changelog": ["@changesets/changelog-github", { "repo": "DefinedNet/postcss-assign-layer" }]
 }

@@ -9,6 +9,10 @@ permissions: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
+  # Queue every run instead of replacing the pending one, so a queued publish run
+  # isn't dropped when a newer push arrives.
+  cancel-in-progress: false
+  queue: max
 
 env:
   FORCE_COLOR: 2
